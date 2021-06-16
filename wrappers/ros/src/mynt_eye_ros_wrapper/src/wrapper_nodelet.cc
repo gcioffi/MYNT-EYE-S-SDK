@@ -231,7 +231,11 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
       // if published init
       is_published_[it->first] = false;
     }
-    is_motion_published_ = false;
+    // new added
+    //is_motion_published_ = false;
+    is_motion_published_ = true;
+    // end
+
     is_started_ = false;
 
     std::map<Stream, std::string> mono_names{{Stream::LEFT, "left_mono"},
