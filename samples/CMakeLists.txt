@@ -199,6 +199,7 @@ if(WITH_API)
   make_executable2(get_imu_params SRCS get_imu_params.cc WITH_OPENCV)
 
   make_executable2(get_stereo_rectified SRCS get_stereo_rectified.cc WITH_OPENCV)
+  make_executable2(get_stereo_rectified_simple SRCS get_stereo_rectified_simple.cc WITH_OPENCV)
   make_executable2(get_disparity SRCS get_disparity.cc WITH_OPENCV)
   make_executable2(get_depth SRCS get_depth.cc WITH_OPENCV)
 
