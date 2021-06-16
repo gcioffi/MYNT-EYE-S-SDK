@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
   //cv::namedWindow("frame");
 
-  int n_frames_max = 100;
+  int n_frames_max = 1000;
   int n_frames = 0;
   while (true) {
     api->WaitForStreams();
