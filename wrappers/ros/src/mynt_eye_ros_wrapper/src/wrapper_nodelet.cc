@@ -207,7 +207,7 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
 
     // node params
 
-    std::map<Stream, std::string> stream_names{
+    /*std::map<Stream, std::string> stream_names{
         {Stream::LEFT, "left"},
         {Stream::RIGHT, "right"},
         {Stream::LEFT_RECTIFIED, "left_rect"},
@@ -215,7 +215,13 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
         {Stream::DISPARITY, "disparity"},
         {Stream::DISPARITY_NORMALIZED, "disparity_norm"},
         {Stream::DEPTH, "depth"},
-        {Stream::POINTS, "points"}};
+        {Stream::POINTS, "points"}};*/
+
+    // new added
+    std::map<Stream, std::string> stream_names{
+        {Stream::LEFT, "left"},
+        {Stream::RIGHT, "right"}};
+    // end
 
     std::map<Stream, std::string> stream_topics{};
     for (auto &&it = stream_names.begin(); it != stream_names.end(); ++it) {
@@ -410,7 +416,8 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
                         sensor_msgs::Temperature>(temperature_topic, 100);
     NODELET_INFO_STREAM("Advertized on topic " << temperature_topic);
 
-    pub_mesh_ = nh_.advertise<visualization_msgs::Marker>("camera_mesh", 0 );
+    // new added
+    /*pub_mesh_ = nh_.advertise<visualization_msgs::Marker>("camera_mesh", 0 );
     // where to get the mesh from
     std::string mesh_file;
     if (private_nh_.getParamCached("s1030_mesh_file", mesh_file)) {
@@ -418,7 +425,8 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
     } else {
       LOG(INFO) << "no mesh found for visualisation, set ros param mesh_file, if desired";
       mesh_msg_.mesh_resource = "";
-    }
+    }*/
+    // end
 
     // stream toggles
 
@@ -450,7 +458,10 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
         DEVICE_INFO_SERVICE, &ROSWrapperNodelet::getInfo, this);
     NODELET_INFO_STREAM("Advertized service " << DEVICE_INFO_SERVICE);
 
-    publishStaticTransforms();
+    // new added
+    //publishStaticTransforms();
+    // end
+
     ros::Rate loop_rate(frame_rate_);
     while (private_nh_.ok()) {
       publishTopics();
@@ -696,7 +707,10 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
   }
 
   void publishTopics() {
-    publishMesh();
+    // new added
+    //publishMesh();
+    // end
+
     if ((camera_publishers_[Stream::LEFT].getNumSubscribers() > 0 ||
         mono_publishers_[Stream::LEFT].getNumSubscribers() > 0) &&
         !is_published_[Stream::LEFT]) {
@@ -790,14 +804,16 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
       is_published_[Stream::RIGHT] = true;
     }
 
-    std::vector<Stream> other_streams{
+    // new added
+    /*std::vector<Stream> other_streams{
         Stream::LEFT_RECTIFIED, Stream::RIGHT_RECTIFIED,
         Stream::DISPARITY,      Stream::DISPARITY_NORMALIZED,
         Stream::POINTS,         Stream::DEPTH
         };
     for (auto &&stream : other_streams) {
       publishOthers(stream);
-    }
+    }*/
+    // end
 
     if (!is_motion_published_) {
       api_->SetMotionCallback([this](const api::MotionData &data) {
