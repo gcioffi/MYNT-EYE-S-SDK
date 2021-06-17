@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   double t = 0.01;
   std::cout << "fps:" << std::endl;
 
-  api->SetOptionValue(Option::FRAME_RATE, 20);
+  api->SetOptionValue(Option::FRAME_RATE, 10);
   int frame_rate = api->GetOptionValue(Option::FRAME_RATE);
   std::cout << "frame_rate: " << frame_rate << std::endl;
   //cv::namedWindow("frame");
