@@ -162,13 +162,7 @@ void Streams::WaitForStreams() {
   std::unique_lock<std::mutex> lock(mtx_);
   auto ready = std::bind(&Streams::HasKeyStreamDatas, this);
 
-  // debug
-  std::cout << "ready before: " << ready() << "\n";
-  std::cout << "cv: " << cv_.wait_for(lock, std::chrono::seconds(2), ready) << "\n";
-  std::cout << "ready after: " << ready() << "\n";
-  // end
-
-  if (!ready() && !cv_.wait_for(lock, std::chrono::seconds(20), ready)) {
+  if (!ready() && !cv_.wait_for(lock, std::chrono::seconds(2), ready)) {
     LOG(FATAL) << "Timeout waiting for key frames. Please use USB 3.0, and not "
                   "in virtual machine.";
   }
