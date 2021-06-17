@@ -230,7 +230,15 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
     api_->WaitForStreams();
     auto &&left_data = api_->GetStreamData(Stream::LEFT);
     auto &&right_data = api_->GetStreamData(Stream::RIGHT);
-    if (left_data.frame.empty() || right_data.frame.empty()) return;
+    if (left_data.frame.empty() || right_data.frame.empty()) 
+    {
+      return
+    }
+    else
+    {
+      std::cout << " I have data\n";
+    }
+    
     
     ++left_count_;
     ++right_count_;
@@ -238,13 +246,13 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
     if (left_count_ > 10)
     {
       ros::Time left_stamp = checkUpTimeStamp(left_data.img->timestamp, Stream::LEFT);
-      publishCamera(Stream::LEFT, left_data, left_count_, left_stamp);
+      //publishCamera(Stream::LEFT, left_data, left_count_, left_stamp);
     }
 
     if (right_count_ > 10)
     {
       ros::Time right_stamp = checkUpTimeStamp(right_data.img->timestamp, Stream::RIGHT);
-      publishCamera(Stream::RIGHT, right_data, right_count_, right_stamp);
+      //publishCamera(Stream::RIGHT, right_data, right_count_, right_stamp);
     }
 
   }
