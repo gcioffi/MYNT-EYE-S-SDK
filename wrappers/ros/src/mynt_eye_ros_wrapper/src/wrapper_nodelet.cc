@@ -215,7 +215,7 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
     ros::Rate loop_rate(100);
     while (private_nh_.ok()) {
       publishTopics();
-      loop_rate.sleep();
+      //loop_rate.sleep();
     }
   }
 
@@ -223,27 +223,11 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
     if (!is_started_) {
       time_beg_ = ros::Time::now().toSec();
       //api_->Start(Source::ALL);
-      
-      // debug
-      std::cout << " before video streaming\n";
-      // end
-      
       api_->Start(Source::VIDEO_STREAMING);
-
-      // debug
-      std::cout << " after video streaming\n";
-      // end
-      
       is_started_ = true;
     }
 
-    // debug
-    std::cout << " before wait streaming\n";
-    // end
     api_->WaitForStreams();
-    // debug
-    std::cout << " after wait streaming\n";
-    // end
 
     auto &&left_data = api_->GetStreamData(Stream::LEFT);
     auto &&right_data = api_->GetStreamData(Stream::RIGHT);
