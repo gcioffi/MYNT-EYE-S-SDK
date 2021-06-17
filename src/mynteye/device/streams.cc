@@ -163,8 +163,8 @@ void Streams::WaitForStreams() {
   auto ready = std::bind(&Streams::HasKeyStreamDatas, this);
 
   // debug
-  std::cout << "ready: " << ready() << "\n";
-  std::cout << "opencv: " << cv_.wait_for(lock, std::chrono::seconds(2), ready) << "\n";
+  //std::cout << "ready: " << ready() << "\n";
+  //std::cout << "cv: " << cv_.wait_for(lock, std::chrono::seconds(2), ready) << "\n";
   // end
 
   if (!ready() && !cv_.wait_for(lock, std::chrono::seconds(2), ready)) {
