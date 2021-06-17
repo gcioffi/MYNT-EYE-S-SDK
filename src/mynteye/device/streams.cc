@@ -167,7 +167,7 @@ void Streams::WaitForStreams() {
   //std::cout << "cv: " << cv_.wait_for(lock, std::chrono::seconds(2), ready) << "\n";
   // end
 
-  if (!ready() && !cv_.wait_for(lock, std::chrono::seconds(2), ready)) {
+  if (!ready() && !cv_.wait_for(lock, std::chrono::seconds(20), ready)) {
     LOG(FATAL) << "Timeout waiting for key frames. Please use USB 3.0, and not "
                   "in virtual machine.";
   }
