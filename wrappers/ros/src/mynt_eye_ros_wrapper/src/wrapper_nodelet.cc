@@ -232,7 +232,7 @@ class ROSWrapperNodelet : public nodelet::Nodelet {
     auto &&right_data = api_->GetStreamData(Stream::RIGHT);
     if (left_data.frame.empty() || right_data.frame.empty()) 
     {
-      return
+      return;
     }
     else
     {
