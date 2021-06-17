@@ -23,30 +23,12 @@ int main(int argc, char *argv[]) {
   if (!api) return 1;
 
   bool ok;
-  // debug
-  std::cout << "I am here 0\n";
-  // end
   auto &&request = api->SelectStreamRequest(&ok);
-  // debug
-  std::cout << "I am here 1\n";
-  // end
   if (!ok) return 1;
-
-  // debug
-  std::cout << "I am here 2\n";
-  // end
   api->ConfigStreamRequest(request);
-
-  // debug
-  std::cout << "I am here 3\n";
-  // end
 
   api->EnableStreamData(Stream::LEFT_RECTIFIED);
   api->EnableStreamData(Stream::RIGHT_RECTIFIED);
-
-  // debug
-  std::cout << "I am here 4\n";
-  // end
 
   /** SetRectifyAlpha
       -1 is default
@@ -54,10 +36,6 @@ int main(int argc, char *argv[]) {
   // api->SetRectifyAlpha(0.5);
 
   api->Start(Source::VIDEO_STREAMING);
-
-  // debug
-  std::cout << "I am here 5\n";
-  // end
 
   double fps;
   double t = 0.01;
