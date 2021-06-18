@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
   if (!ok) return 1;
   api->ConfigStreamRequest(request);
 
+  // done automatically
   //api->EnableStreamData(Stream::LEFT);
   //api->EnableStreamData(Stream::RIGHT);
 

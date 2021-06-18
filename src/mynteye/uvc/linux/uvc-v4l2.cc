@@ -45,7 +45,7 @@ namespace uvc {
     LOG(severity) << str << " error " << errno << ", " << strerror(errno); \
   } while (0)
 
-#define NO_DATA_MAX_COUNT 2000
+#define NO_DATA_MAX_COUNT 200
 #define LIVING_MAX_COUNT 9000
 
 int no_data_count = 0;
