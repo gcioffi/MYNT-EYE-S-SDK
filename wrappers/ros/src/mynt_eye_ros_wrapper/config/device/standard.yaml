@@ -11,7 +11,7 @@ standard/contrast: -1
 # standard/contrast: 116
 
 # standard/frame_rate range: {10,15,20,25,30,35,40,45,50,55,60}
-standard/frame_rate: 50 
+standard/frame_rate: -1
 # standard/frame_rate: 25
 
 # standard/imu_frequency range: {100,200,250,333,500}
@@ -55,4 +55,4 @@ standard/gyro_range: -1
 # MYNTEYE-S1030, Reslution: 376x240, Format: YUYV
 #index_s_1: 1
 
-standard/request_index: 1
+standard/request_index: 0
